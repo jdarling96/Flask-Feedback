@@ -1,0 +1,61 @@
+{% extends 'base.html'%}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<section class="vh-100 bg-image"
+style="background-color: #2779e2; border-radius: 15px;">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+              <form action="/register" method="post">
+                {{ form.hidden_tag() }}
+
+                {% for field in form
+                  if field.widget.input_type != 'hidden' %}
+                
+                  <div class="form-outline mb-4">
+                 <b>{{field.label}}</b>
+                </div>
+                
+                {% for error in field.errors %}
+                <span class="form-text text-danger">{{ error }}</span>
+                  {% endfor %}
+               
+                  <div class="form-outline mb-4">
+                  {{field}}
+                </div>
+            
+                
+                {% endfor %}
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-success">Register</button>
+                </div>
+
+            
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  {% endblock %}
+
+
+
+
+
+   
