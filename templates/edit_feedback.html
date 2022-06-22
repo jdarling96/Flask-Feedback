@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+
+{% block title %}Update Feedback{% endblock %}
+
+{% block content %}
+
+<form action="/feedback/{{feedback.id}}/update" method="post">
+    {{ form.hidden_tag() }}
+
+    {% if form.input_type != 'hidden' %}
+    
+    <div class="form-outline mb-4">
+      {{form.title(class_="form-control")}}
+      <label class="form-label" for="form4Example2">{{form.title.label}}</label>
+    </div>
+  
+    
+    <div class="form-outline mb-4">
+        {{form.content(class="form-control", rows="4")}}
+      <label class="form-label" for="form4Example3">{{form.content.label}}</label>
+    </div>
+  
+   
+    
+   {% endif %}
+    
+    <button type="submit" class="btn btn-primary btn-block mb-4">Update</button>
+  </form>
+
+
+{% endblock %}

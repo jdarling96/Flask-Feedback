@@ -27,7 +27,7 @@ class User(db.Model):
 
     last_name = db.Column(db.String(30), nullable=False)
 
-    
+    feedback = db.relationship('Feedback', backref='user', cascade='all, delete-orphan')
 
     
 
@@ -61,6 +61,8 @@ class User(db.Model):
 class Feedback(db.Model):
     """Feedback model for users"""
 
+    __tablename__ = 'feedback'
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
 
     title = db.Column(db.String(100), nullable=False)
@@ -69,5 +71,5 @@ class Feedback(db.Model):
 
     username = db.Column(db.String(20), db.ForeignKey('users.username'), nullable=False) 
 
-    feedback = db.relationship('User', backref='feedback') 
+    """ feedback = db.relationship('User', backref='feedback', cascade='all, delete-orphan') """ 
     

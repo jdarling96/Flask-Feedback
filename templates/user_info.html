@@ -31,8 +31,8 @@
                     {% if session['user_login'] == user.username %}
                     <form>
                     <div class="d-flex pt-1">
-                        <button formmethod="post" formaction="/users/{{user.username}}/delete" type="button" class="btn btn-outline-primary me-1 flex-grow-1">Add</button>
-                        <button formmethod="get" formaction="/users/{{user.username}}/feedback/Add" type="button" class="btn btn-primary flex-grow-1">Delete</button>
+                        <button formmethod="get" formaction="/users/{{user.username}}/feedback/add" type="submit" class="btn btn-outline-primary me-1 flex-grow-1">Add</button>
+                        <button formmethod="post" formaction="/users/{{user.username}}/delete" type="submit" class="btn btn-primary flex-grow-1">Delete</button>
                       </div>
                     </form>
                     {% endif %}
@@ -44,12 +44,13 @@
       </div>
       
     </div>
-    <br>
+    
 
-        {% for u in user.feedback %}
+        
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
+                {% for u in user.feedback %}
               <div class="card mb-5" style="border-radius: 15px;">
                 <div class="card-body p-4">
                   <h3 class="mb-3">{{u.title}}</h3>
@@ -58,21 +59,30 @@
                   <hr class="my-4">
                   <div class="d-flex justify-content-start align-items-center">
                     {% if session['user_login'] == u.username %}
-                    <button class="btn btn-outline-primary">Edit</button>
-                    <button class="btn btn-primary">Delete</button>
+                    <form>
+                    <button formmethod="get" formaction="/feedback/{{u.id}}/update" class="btn btn-outline-primary">Edit</button>
+                    <button formmethod="post" formaction="/feedback/{{u.id}}/delete" class="btn btn-primary">Delete</button>
+                    </form>
                     {% endif %}
-                   
+                    
                    
                   </div>
+                 
                 </div>
+               
               </div>
+              {% endfor %}
               
                 </div>
+                
               </div>
+              
             </div>
+            
           </div>
+         
         </div>
-        {% endfor %}
+        
       
   </div>
 </section>
