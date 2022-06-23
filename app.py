@@ -6,9 +6,16 @@ from models import Feedback, db, connect_db, User
 from forms import *
 from sqlalchemy.exc import IntegrityError
 import os
+import re
+
+uri = os.environ.get('DATABASE_URL', 'postgresql:///database_name')
+if uri.startswith("postgres://"):
+ uri = uri.replace("postgres://", "postgresql://", 1)
+
+# rest of connection code using the connection string `uri`
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL',"postgresql:///flask_feedback")
+app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
 app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY', 'secretkey1')
