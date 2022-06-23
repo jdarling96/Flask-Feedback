@@ -1,4 +1,6 @@
-from models import Feedback, db, User
+from models import db
+from app import app
+
 
 
 
